@@ -9,8 +9,6 @@ export interface QuantityInputProps {
 }
 
 export function QuantityInput({ size="medium", quantity=0, onIncrement, onDecrement }: QuantityInputProps) {
-
-
   return (
     <QuantityInputContainer size={size}>
       <IconWrapper disabled={quantity <= 1} >

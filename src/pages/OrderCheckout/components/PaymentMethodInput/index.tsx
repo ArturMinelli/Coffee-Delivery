@@ -1,11 +1,16 @@
 import { PaymentMethodInputContainer } from "./styles";
-import { CreditCard } from 'phosphor-react'
+import { InputHTMLAttributes, ReactNode } from "react";
 
-export function PaymentMethodInput() {
+type PaymentMethodInputProps = InputHTMLAttributes<HTMLInputElement> & {
+  icon: ReactNode;
+  label: string;
+}
+
+export function PaymentMethodInput({label, icon}: PaymentMethodInputProps) {
   return (
     <PaymentMethodInputContainer>
-      <CreditCard size={16} />
-      Cartão de crédito
+      {icon}
+      {label}
     </PaymentMethodInputContainer>
   )
 }
