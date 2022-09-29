@@ -20,14 +20,21 @@ interface CoffeeCardProps {
 }
 
 export function CoffeeCard({coffee}: CoffeeCardProps) {
-  const [quantity, setQuantity] = useState<number>(1)
+  const { cartItems } = useCart()
+  const [quantity, setQuantity] = useState<number>(() => {
+    const coffeeAlreadyInCart = cartItems.findIndex((cartItem) => cartItem.id === coffee.id)
+
+    if(coffeeAlreadyInCart >= 0) {
+      return cartItems[coffeeAlreadyInCart].quantity
+    } else return 0
+  })
 
   function handleIncrement() {
     setQuantity((state) => state + 1)
   }
 
   function handleDecrement() {
-    if(quantity > 1) {
+    if(quantity > 0) {
       setQuantity((state) => state - 1)
     }
   }

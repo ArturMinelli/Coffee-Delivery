@@ -48,7 +48,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       if(coffeeAlreadyInCart < 0) {
         draft.push(coffee)
       } else {
-        draft[coffeeAlreadyInCart].quantity += coffee.quantity
+        draft[coffeeAlreadyInCart].quantity = coffee.quantity
       }
     }
     })
@@ -78,7 +78,11 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
 
       if(coffeeAlreadyInCart >= 0) {
         const item = draft[coffeeAlreadyInCart]
-        draft[coffeeAlreadyInCart].quantity = type === "increment" ? item.quantity + 1 : item.quantity - 1
+        if(type === "decrement" && item.quantity > 0) {
+          draft[coffeeAlreadyInCart].quantity = item.quantity - 1
+        } else if(type === "increment") {
+          draft[coffeeAlreadyInCart].quantity = item.quantity + 1
+        }
       }
     })
 

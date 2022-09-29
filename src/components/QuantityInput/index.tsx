@@ -11,7 +11,7 @@ export interface QuantityInputProps {
 export function QuantityInput({ size="medium", quantity=0, onIncrement, onDecrement }: QuantityInputProps) {
   return (
     <QuantityInputContainer size={size}>
-      <IconWrapper disabled={quantity <= 1} >
+      <IconWrapper disabled={quantity <= 0} >
         <Minus size={14} weight="fill" onClick={onDecrement}/>
       </IconWrapper>
       <input type="number" readOnly value={quantity} min="0" />
