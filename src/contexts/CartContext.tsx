@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { Coffee } from "../pages/Home/components/CoffeeCard";
 import { produce } from 'immer'
+import { toast } from "react-toastify";
 
 export interface CartItem extends Coffee {
   quantity: number;
@@ -50,6 +51,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       } else {
         draft[coffeeAlreadyInCart].quantity = coffee.quantity
       }
+
+      toast.success("Seu item foi adicionado ao carrinho!", {
+        autoClose: 2000,
+      })
     }
     })
 
